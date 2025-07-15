@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+    <h2>Latest Posts</h2>
+    <ul>
+        {% for id, post in posts.items() %}
+        <li><a href="{{ url_for('post', post_id=id) }}">{{ post.title }}</a></li>
+        {% endfor %}
+    </ul>
+{% endblock %}
