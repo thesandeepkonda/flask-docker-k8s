@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: flask-blog
-        image: your-dockerhub-username/flask-personal-blog:latest
+        image: flask-docker-k8s:latest
         ports:
         - containerPort: 5000
         readinessProbe:
