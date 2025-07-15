@@ -1,19 +1,31 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: flask-deployment
+  name: flask-blog
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: flask-app
+      app: flask-blog
   template:
     metadata:
       labels:
-        app: flask-app
+        app: flask-blog
     spec:
       containers:
-      - name: flask-container
-        image: thesandeepkonda/my-flask-app:latest
+      - name: flask-blog
+        image: your-dockerhub-username/flask-personal-blog:latest
         ports:
         - containerPort: 5000
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 5000
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 5000
+          initialDelaySeconds: 15
+          periodSeconds: 20
